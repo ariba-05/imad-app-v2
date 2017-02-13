@@ -5,12 +5,90 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articles ={
+         'article-one':{
+        title: 'Article one by orean',
+        heading: 'Article one',
+        date: 'feb 12 2017',
+        content: `<p>
+         This the first para to be witten in the html code of a first webpage towards the making of a website
+         </p>
+         <p>
+         The second paragraph to make the code look fullfuling and a bit astheticaly look
+         </p>
+         <p>
+         The third para and the last one look on more is coming
+         </p>`},
+         'article-two':{
+             title: 'Article two',
+             heading: 'Article two being made',
+             date: 'feb 13 2017',
+             content: `<p>
+         This the first para to be witten in the html code of a first webpage towards the making of a website
+         </p>
+         <p>
+         The second paragraph to make the code look fullfuling and a bit astheticaly look
+         </p>
+         <p>
+         The third para and the last one look on more is coming
+         </p>`},
+         'article-three':{
+             tiltle: 'Article three',
+             heading: 'Article three',
+             date: 'feb 13 2017',
+             content: `<p>
+         This the first para to be witten in the html code of a first webpage towards the making of a website
+         </p>
+         <p>
+         The second paragraph to make the code look fullfuling and a bit astheticaly look
+         </p>
+         <p>
+         The third para and the last one look on more is coming
+         </p>`},
+    };
+    function createTemplate(data) {
+        var title=data.title;
+        var date=data.date;
+        var heading=data.heading;
+        var content=data.content;
+    var htmlTemplate=`<html>
+    <head>
+        <title>
+            ${title}
+            </title>
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="/ui/style.css" rel="stylesheet" />
+        
+     </head>
+     <body>
+      <div class="con">
+       <div>
+         <a href="/">Home</a>
+         </div>
+         <hr/>
+         <h3>
+         ${heading}
+         </h3>
+         <div>
+         ${date}
+         </div>
+         <div>
+         ${content}
+           </div>
+          </div>
+         </body>
+ </html>`;
+ return htmlTemplate;}
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui','article-one.html'));
+app.get('/:article-Name',function(req,res){
+    var articleName=req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-two',function(req,res)
