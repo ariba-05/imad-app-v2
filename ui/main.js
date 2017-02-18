@@ -1,6 +1,6 @@
 //counter code
 var button=document.getElementById('counter');
-var counter=0;
+//var counter=0;
 button.onclick = function() {
 //make a respose to counter 
 var request=new XMLHttpRequest();
@@ -10,10 +10,10 @@ request.onreadystatechange= function(){
      //take some anction
      if(request.status===200){
          var counter=request.responeText;
-         span.innerHTML=counter.toString();
+         
     
-//render the variable in correct span
-counter=counter+1;
+
+//counter=counter+1;
 var span=document.getElementById('count');
 span.innerHTML =counter.toString();
 }
