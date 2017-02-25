@@ -4,6 +4,7 @@ body {
     font-style: italic;
     background-color: aquamarine;
     margin-top: 75px;
+    color: crimson;
 }
 
 .center {
@@ -30,5 +31,7 @@ body {
           max-width: 800px;
           margin: 0 auto;
           color: grey; 
-          font-family: sans-serif;}
+          font-family: sans-serif;
+          
+}
          
