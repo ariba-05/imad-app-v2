@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
     
-    font-style: italic;
+    
     background-color: aquamarine;
     margin-top: 75px;
     color: crimson;
@@ -22,10 +22,6 @@ body {
 .img-medium {
     height: 200px;
 }
-
-    
-    
-    
 
 .con {
           max-width: 800px;
