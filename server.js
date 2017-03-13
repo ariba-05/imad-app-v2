@@ -101,9 +101,9 @@ app.get('/', function (req, res) {
 function hash(input, salt){
     //how do we create a hash?
     var hashed=crypto.pbkdf25Sync(input, salt, 10000, 512, 'sha512');
-    return hashed.toString('hex');
+    return ["pbkdf2", "10000", salt,hashed.toString('hex')].join('$');
 
-
+//algorithm md5
 }
 app.get('/hash/:input', function(req,res){
     var hashedString= hash(req.params.input, 'this-is-some-random-string');
