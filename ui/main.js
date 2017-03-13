@@ -1,37 +1,26 @@
-//counter code
-var button=document.getElementById('counter');
 
-button.onclick = function() {
-//make a respose to counter 
-var request=new XMLHttpRequest();
-//capture the response store in a variable
-request.onreadystatechange= function(){
-   if(request.readyState === XMLHttpRequest.DONE){
-     //take some anction
-     if(request.status===200){
-         var counter=request.responeText;
-         
-    
-
-
-var span=document.getElementById('count');
-span.innerHTML = counter.toString();
-}
-}
-};
-request.open('GET','http://oreanroy.imad.hasura-app.io/counter',true);
-request.send(null);
-};
-
-var nameInput=document.getElementById('name');
-var name=nameInput.value;
 var submit=document.getElementById('submit_btn');
 submit.onclick = function()
-{
-    var names=['name1','name2','nmae3'];
-    var list='';
-    for(var i=0;i<names.length;i++){
-        list+= '<li>'+names[i]+'</li>';
-    }var ul=document.getElementById('name list');
-    ul.innerHtml= list;
+{//create reequest
+    var request=new XMLHttpRequest();
+    //capture response and store in a variable
+    request.onreadystatechange=function(){
+        if(request.readyState===XMLHttpRequest.DONE)
+     {//take some action
+     if(request.status===200){
+    alert('Logged in successfully');     
+     }else if(request.status===403){
+     alert('Username/password is incorrect');
+    }
+    else if(request,status===500){
+        alert('Something went wrong');
+    }}};
+    
+    
+    var usernames=document.getElementByID('username').value;
+    var password=document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST','http://oreanroy.imad.hasura-app.io/login',true);
+    request.send(JSON.stringify({username: username,password: password}));
 };
