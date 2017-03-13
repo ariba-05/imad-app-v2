@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 var pool = require('pg').pool
 var crypto=require('crypto');
+var bodyParser=require('body-Parser');
 
 
 var config = {
@@ -58,6 +59,9 @@ var articles ={
          The third para and the last one look on more is coming
          </p>`},
     };
+    
+    
+    app.use(bodyParser.json());
     function createTemplate(data) {
         var title=data.title;
         var date=data.date;
@@ -109,9 +113,24 @@ app.get('/hash/:input', function(req,res){
     var hashedString= hash(req.params.input, 'this-is-some-random-string');
     res.send(hashedString);
     
-})
+});
 
-
+app.post('/create-user',function(req,res){
+    var username=req.body.username;
+    var password=req.body.password;
+   var salt=crypto.RandomBytes(128).toString('hex');
+   var doString = hash(password,salt);
+   pool.query('INSERT INTO "user"(username,password) VALUES($1,$2)',[username, dbString], function(err,result){
+   
+   if(err){
+    res.status(500).send(err.toString());
+    }
+    else{
+        res.send('user successfully created'+username);
+        
+    }
+   }); 
+});
 
 
 
